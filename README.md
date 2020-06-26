@@ -58,9 +58,10 @@ Usage
    page. e.g. "....commcarehq.org/a/my-project-space/settings/users/web/account/
    **c0ffeeeeeb574eb8b5d5036c9a61a483** /"
 
+       $ export CCHQ_USERNAME=user@example.com
+       $ export CCHQ_PASSWORD=MijByG_se3EcKr.t
+       $ export CCHQ_USER_ID=c0ffeeeeeb574eb8b5d5036c9a61a483
+
 3. Run the script:
 
-       $ export CCHQ_USERNAME=user@example.com
-       $ export CCHQ_PASSWORD=M7MwnA7okswFXwKC
-       $ export CCHQ_USER_ID=c0ffeeeeeb574eb8b5d5036c9a61a483
        $ submit_data.py sample_data.csv
