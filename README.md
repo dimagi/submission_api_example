@@ -44,23 +44,49 @@ Requirements
 Installation
 ------------
 
-    $ pip install -r requirements.txt
+1. Clone this repository
+
+       $ git clone https://github.com/dimagi/submission_api_example.git
+       $ cd submission_api_example
+
+2. Create and activate a virtual environment
+
+       $ python3 -m venv venv
+       $ source venv/bin/activate
+
+3. Install required Python packages
+
+       $ pip install -r requirements.txt
 
 
 Usage
 -----
 
-1. Edit the script to configure the settings with your values at the
-   top.
+1. Set environment variables with your configuration:
 
-2. Set environment variables with your CommCare username, password and
-   user ID. You can find your user ID in the URL of your user details
-   page. e.g. "....commcarehq.org/a/my-project-space/settings/users/web/account/
-   **c0ffeeeeeb574eb8b5d5036c9a61a483** /"
-
+       $ export CCHQ_PROJECT_SPACE=my-project-space
+       $ export CCHQ_CASE_TYPE=person
        $ export CCHQ_USERNAME=user@example.com
        $ export CCHQ_PASSWORD=MijByG_se3EcKr.t
        $ export CCHQ_USER_ID=c0ffeeeeeb574eb8b5d5036c9a61a483
+       $ export CCHQ_OWNER_ID=c0ffeeeee1e34b12bb5da0dc838e8406
+
+   * `CCHQ_CASE_TYPE` is a name for the type of cases you will be
+     importing. This is usually something like "person", or "site".
+
+   * You will need your CommCare credentials: username, password and
+     user ID. If you navigate to your user details page, you can find
+     your user ID in the URL. e.g.
+     "....commcarehq.org/a/my-project-space/settings/users/web/account/
+     **c0ffeeeeeb574eb8b5d5036c9a61a483** /"
+
+   * CommCare determines who has access to the cases that you import
+     based on the location or mobile worker that is set as the owner. As
+     you found your user ID, navigate to the details page for the mobile
+     worker or location to get their ID from the URL.
+
+2. (Optional) Edit the script to set an XML namespace to identify your
+   XForm submission, and a string to identify the origin of your data.
 
 3. Run the script:
 

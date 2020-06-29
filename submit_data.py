@@ -4,23 +4,18 @@ An example script to send data to CommCare using the Submission API
 
 Usage:
 
+    $ export CCHQ_PROJECT_SPACE=my-project-space
+    $ export CCHQ_CASE_TYPE=person
     $ export CCHQ_USERNAME=user@example.com
-    $ export CCHQ_PASSWORD=M7MwnA7okswFXwKC
+    $ export CCHQ_PASSWORD=MijByG_se3EcKr.t
     $ export CCHQ_USER_ID=c0ffeeeeeb574eb8b5d5036c9a61a483
+    $ export CCHQ_OWNER_ID=c0ffeeeee1e34b12bb5da0dc838e8406
+
     $ submit_data.py sample_data.csv
 
 """
 
-# Configure the following settings with your values
-
-# Your project space
-PROJECT_SPACE = 'my-project-space'
-
-# The case type of the cases you are sending to CommCare
-CASE_TYPE = 'person'
-
-# The ID of the user or location that your cases must be assigned to
-OWNER_ID = 'c0ffeeeee1e34b12bb5da0dc838e8406'
+# (Optional) Configure the following settings with your values
 
 # An XML namespace to identify your XForm submission
 FORM_XMLNS = 'http://example.com/submission-api-example-form/'
@@ -55,11 +50,11 @@ class CaseProperty:
 class Case:
     id: str  # A UUID. Generated if not given in the data.
     name: str  # Required
+    type: str  # A name for the case type. e.g. "person" or "site"
     modified_on: str  # Generated if not given. e.g. "2020-06-08T18:41:33.207Z"
+    owner_id: str  # ID of the user or location that cases must be assigned to
     properties: List[CaseProperty]  # All other given data
     server_modified_on: Optional[str]
-    owner_id: str = OWNER_ID
-    type: str = CASE_TYPE
 
 
 def main(filename):
@@ -95,7 +90,9 @@ def as_cases(data: Iterable[dict]) -> Iterable[Case]:
         yield Case(
             id=dict_.get('id', str(uuid.uuid4())),
             name=dict_['name'],
+            type=os.environ['CCHQ_CASE_TYPE'],
             modified_on=dict_.get('modified_on', now_utc()),
+            owner_id=os.environ['CCHQ_OWNER_ID'],
             server_modified_on=dict_.get('server_modified_on'),
             properties=properties,
         )
@@ -124,7 +121,8 @@ def submit_xform(xform: str) -> Tuple[bool, str]:
     Returns (True, success_message) on success, or (False,
     failure_message) on failure.
     """
-    url = join_url(COMMCARE_URL, f'/a/{PROJECT_SPACE}/receiver/')
+    url = join_url(COMMCARE_URL,
+                   f'/a/{os.environ["CCHQ_PROJECT_SPACE"]}/receiver/')
     auth = (os.environ['CCHQ_USERNAME'], os.environ['CCHQ_PASSWORD'])
     headers = {'Content-Type': 'text/html; charset=UTF-8'}
     response = requests.post(url, xform.encode('utf-8'),
@@ -181,9 +179,15 @@ def now_utc() -> str:
 
 
 def missing_env_vars():
-    return [env_var
-            for env_var in ('CCHQ_USERNAME', 'CCHQ_PASSWORD', 'CCHQ_USER_ID')
-            if env_var not in os.environ]
+    env_vars = (
+        'CCHQ_PROJECT_SPACE',
+        'CCHQ_CASE_TYPE',
+        'CCHQ_USERNAME',
+        'CCHQ_PASSWORD',
+        'CCHQ_USER_ID',
+        'CCHQ_OWNER_ID',
+    )
+    return [env_var for env_var in env_vars if env_var not in os.environ]
 
 
 if __name__ == '__main__':
