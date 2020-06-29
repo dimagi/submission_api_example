@@ -111,7 +111,7 @@ def render_xform(cases: Iterable[Case]) -> str:
         'submission_id': uuid.uuid4().hex,
         'cases': list(cases),
     }
-    with open('xform_template.xml') as template_file:
+    with open('xform.xml.j2') as template_file:
         template = Template(template_file.read())
     xform = template.render(**context)
     return xform

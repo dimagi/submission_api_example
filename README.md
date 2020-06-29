@@ -22,10 +22,10 @@ The `get_data()` function is arbitrary. The script uses CSV because it
 is simple, but your use case is probably going to be different. The
 point is just to return data that can be cast as cases.
 
-Take a look at **xform_template.xml** to see the structure of an XForm,
-and how case data is stored in it.
+Take a look at **xform.xml.j2** to see the structure of an XForm, and
+how case data is stored in it.
 
-**NOTE**: This is a simplistic example that always creates new cases; it
+**NOTE:** This is a simplistic example that always creates new cases; it
 does not update existing ones. If this is not the behaviour you want,
 you will need to keep a record of cases that have already been created.
 
