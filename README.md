@@ -2,7 +2,7 @@ Submission API Example
 ======================
 
 **submit_data.py** is an example script to illustrate how to use the
-CommCare HQ Submission API.
+CommCare HQ Submission API to create CommCare cases.
 
 
 Code as documentation
@@ -33,6 +33,18 @@ you will need to keep a record of cases that have already been created.
 have already been created, you can set the `server_modified_on`
 attribute for existing cases.)
 
+**NOTE:** Another important use case for the Submission API is to submit
+form data that does not affect cases. That use case is outside the scope
+of this example, and is not covered by **submit_data.py** and
+**xform.xml.j2**. For more information, look at the **Submitted Data**
+examples in the [Introduction to XForms][1] section of the
+[XForms W3C Recommentation][2]. The XML in the examples would sit at the
+same level as the `<meta>` and `<case>` nodes in the XForm, as a child
+of the root `<data>` node.
+
+
+[1]: https://www.w3.org/TR/xforms/#concepts-xml-instance-data
+[2]: https://www.w3.org/TR/xforms/
 
 
 Requirements
