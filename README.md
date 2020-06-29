@@ -90,4 +90,4 @@ Usage
 
 3. Run the script:
 
-       $ submit_data.py sample_data.csv
+       $ ./submit_data.py sample_data.csv

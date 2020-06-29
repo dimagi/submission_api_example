@@ -11,7 +11,7 @@ Usage:
     $ export CCHQ_USER_ID=c0ffeeeeeb574eb8b5d5036c9a61a483
     $ export CCHQ_OWNER_ID=c0ffeeeee1e34b12bb5da0dc838e8406
 
-    $ submit_data.py sample_data.csv
+    $ ./submit_data.py sample_data.csv
 
 """
 
