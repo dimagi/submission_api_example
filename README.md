@@ -13,8 +13,8 @@ or in your own language, it is best to get an overview of the workflow,
 and then dive into the details.
 
 Start at the `main()` function in **submit_data.py**. You will see that
-data is cast as a list of cases, then rendered as an XForm, and finally
-submitted to CommCare HQ.
+data is cast as cases, then rendered as an XForm, and finally submitted
+to CommCare HQ.
 
 Notice the `Case` class to see what a case looks like.
 
@@ -38,7 +38,7 @@ form data that does not affect cases. That use case is outside the scope
 of this example, and is not covered by **submit_data.py** and
 **xform.xml.j2**. For more information, look at the **Submitted Data**
 examples in the [Introduction to XForms][1] section of the
-[XForms W3C Recommentation][2]. The XML in the examples would sit at the
+[XForms W3C Recommendation][2]. The XML in the examples would sit at the
 same level as the `<meta>` and `<case>` nodes in the XForm, as a child
 of the root `<data>` node.
 
