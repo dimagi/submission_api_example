@@ -1,4 +1,4 @@
-external_id,name,family_name,given_name,date_of_birth,sport
-TOGO-ST,"SALOU, Bachirou",Salou,Bachirou,1970-09-15,football
-K1-2008-03,"BOUKPETI, Benjamin",Boukpeti,Benjamin,1981-08-04,canoe slalom
-OLIMPIA-25,"ADEBAYOR, Emmanuel",Adebayor,Emmanuel,1984-02-26,football
+text,other_test
+TOGO-ST,"SALOU, Bachirou"
+K1-2008-03,"BOUKPETI, Benjamin"
+OLIMPIA-25,"ADEBAYOR, Emmanuel"
