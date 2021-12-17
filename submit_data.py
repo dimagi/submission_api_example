@@ -122,7 +122,7 @@ def submit_xform(xform: str) -> Tuple[bool, str]:
     failure_message) on failure.
     """
     url = join_url(COMMCARE_URL,
-                   f'/a/{os.environ["CCHQ_PROJECT_SPACE"]}/receiver/')
+                   f'/a/{os.environ["CCHQ_PROJECT_SPACE"]}/receiver/api/')
     auth = (os.environ['CCHQ_USERNAME'], os.environ['CCHQ_PASSWORD'])
     headers = {'Content-Type': 'text/html; charset=UTF-8'}
     response = requests.post(url, xform.encode('utf-8'),
